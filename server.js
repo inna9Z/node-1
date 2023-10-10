@@ -1,21 +1,13 @@
-import fs from 'fs';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import requestHandler from './routes.js';
+import http from 'http';
 
-// get the current module's directory path
-const __filename = fileURLToPath(import.meta.url);
-const PATH = dirname(__filename);
+dotenv.config();
 
-// write, read , append and delete this text to `message.txt`
-const filePath = path.join(PATH, 'message.txt');
-const messageToSave = `Hello there,\nwelcome to Node.js `;
+const PORT = process.env.PORT || 3005;
 
-// write
+const server = http.createServer(requestHandler);
 
-// read
-
-// append
-
-// open, read , close
-
-// unlink
+server.listen(PORT, () => {
+    console.log(`listening on port ${PORT}...`);
+});
